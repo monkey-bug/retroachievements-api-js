@@ -30,9 +30,8 @@
   ],
   "scripts": {
     "dev": "esrun --watch src/__playground.ts",
-    "prebuild": "node src/set-version.js",
-    "build": "microbundle",
-    "prepare": "microbundle && husky install",
+    "build": "microbundle --define PACKAGE_VERSION=\"$npm_package_version\"",
+    "prepare": "microbundle --define PACKAGE_VERSION=\"$npm_package_version\" && husky install",
     "format": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
     "format:write": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
     "format:check": "prettier --check . '**/*.{json,md,js,ts,tsx}'",
@@ -42,7 +41,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "verify": "pnpm format:check && pnpm lint && pnpm test:coverage && pnpm build",
-    "start": "microbundle watch"
+    "start": "microbundle --define PACKAGE_VERSION=\"$npm_package_version\" watch"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",

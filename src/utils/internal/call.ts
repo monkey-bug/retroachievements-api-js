@@ -1,4 +1,4 @@
-const packageVersion = process.env?.["PACKAGE_VERSION"] ?? "Unknown";
+declare const PACKAGE_VERSION: string | undefined;
 
 /**
  * Fetch an HTTP resource. This is publicly exposed in the
@@ -16,7 +16,7 @@ export const call = async <
   const { url } = config;
 
   const headers = new Headers({
-    "User-Agent": `RetroAchievements-api-js/${packageVersion}`,
+    "User-Agent": `RetroAchievements-api-js/${PACKAGE_VERSION ?? "Unknown"}`,
   });
 
   const rawResponse = await fetch(url, { headers });

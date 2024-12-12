@@ -19,7 +19,7 @@ export const call = async <
     "User-Agent": `RetroAchievements-api-js/${PACKAGE_VERSION ?? "Unknown"}`,
   });
 
-  const rawResponse = await fetch(url, { headers });
+  const rawResponse = await fetch(url, (typeof window !== undefined) ? {} : { headers });
 
   if (!rawResponse.ok) {
     throw new Error(
